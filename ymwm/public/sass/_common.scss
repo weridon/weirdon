@@ -1,0 +1,29 @@
+@import "compass/reset";
+@import "compass/css3";
+
+.fl{
+  float:left;
+}
+.fr{
+  float:right;
+}
+.clearfix:before,
+.clearfix:after{
+  display:table;
+  content:' ';
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+}
+.none{
+  display:none;
+}
+a{
+  text-decoration: none;
+}
+html{
+  font-family:"Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

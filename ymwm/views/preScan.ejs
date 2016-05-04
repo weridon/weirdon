@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, user-scalable=no">
+    <title>预览项目</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    <div class="container-fluid pre-scan" >
+        <%- include('cmnheader')%>
+        <div class="content prescan">
+            <div class="row">
+                <div class="info-list-wrap clearfix">
+                    <ul class="col-xs-12 info-list fl">
+                        <li class="fl info-step J-info-step" data-index="1"><span class="glyphicon glyphicon-ok"></span> 基本信息</li>
+                        <li class="fl info-step J-info-step" data-index="2"><span class="glyphicon glyphicon-ok"></span> 项目信息</li>
+                        <li class="fl info-step J-info-step" data-index="3"><span class="glyphicon glyphicon-ok"></span> 详细描述</li>
+                        <li class="fl info-step J-info-step" data-index="4"><span class="glyphicon glyphicon-ok"></span> 回报设置</li>
+                    </ul>
+                    <a class="fl pre-scan-btn info-item-active" href="javascript:;">预览</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <div class="wrapper">
+                        <div class="pro-top">
+                            <span class="glyphicon glyphicon-flag"></span>
+                            <span id="J-protype"><%= group.proType?group.proType:'暂无' %></span>
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            <span id="J-address"><%= group.address?group.address:'暂无' %></span>
+                            <span class="glyphicon glyphicon-tags"></span>
+                            <span id="J-proname"><%= group.proName?group.proName:'暂无' %></span>
+                        </div>
+                        <div class="pro-md clearfix">
+                            <div id="J-proimg" class="pro-pre-img fl">
+                                <% if(group.img){ %>
+                                <% var imggroup=JSON.parse(group.img);for(var i= 0,len = imggroup.length; i<len; i++) {%>
+                                <img src="./images/<%= imggroup[i] %>" alt="proimg">
+                                <% } %>
+                                <% } %>
+                            </div>
+                            <div class="pro-pre-info fl">
+                                <section>
+                                    <div class="pro-status">
+                                        <p id="J-support"><%= group.supportNum?group.supportNum:0 %></p>
+                                        <h3>支持数</h3>
+                                    </div>
+                                    <div class="pro-status">
+                                        <p id="J-curmny">¥<%= group.currentMoney?group.currentMoney:0 %></p>
+                                        <h3>已筹款</h3>
+                                    </div>
+                                    <div class="progress">
+                                        <% var percentage = group.currentMoney/group.goalMoney;var goalstatus = percentage<1?percentage*100:100;var goalpercent = goalstatus+'%';%>
+                                        <div id="J-progress" class="progress-bar  progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="<%= goalstatus %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= goalpercent%>;">
+                                            <span id="J-progress-text"><%= goalpercent%> Complete</span>
+                                        </div>
+                                    </div>
+                                    <p class="rest-and-goal">
+                                        <% var left=Math.floor((group.finishTime-group.startTime)/(1000*60*60*24)),leftday=left>0?left:0;%>
+                                        <span class="fl">剩余<b id="J-leftday"><%= leftday %></b>天</span>
+                                        <span class="fr">目标筹资¥<b id="J-goalmny"><%= group.goalMoney %></b></span>
+                                    </p>
+                                    <a class="btn-support" href="javascript:;">立即支持</a>
+                                </section>
+                                <section>
+                                    <div class="info-header">
+                                        <p></p>
+                                        <h3>为什么我需要你的支持及资金用途</h3>
+                                    </div>
+                                    <p id="J-prodescribe" class="pro-describe"><%= group.proDescribe %></p>
+                                </section>
+                                <section>
+                                    <div class="info-header">
+                                        <p></p>
+                                        <h3>可能存在的风险</h3>
+                                    </div>
+                                    <p id="J-proRisk" class="pro-describe"><%= group.proRisk %></p>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/jquery-2.2.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //获取缓存中的name，并替换节点，参数为替换节点的父节点
+            function getStorage(ele){
+                var username = window.localStorage.getItem("name");
+                if(username){
+                    $(ele).children().remove();
+                    var $user = $('<span class="name-item">hi，'+username+'</span>'),
+                            $exit = $('<a class="nav-item" href="login">退出登录</a>');
+                    $(ele).append($user).append($exit);
+                }
+            }
+            getStorage('.J-user-info');
+        });
+    </script>
+</body>
+</html>

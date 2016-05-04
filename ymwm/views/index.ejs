@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scaleble=no">
+    <title>首页</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/index.css">
+</head>
+<body>
+<div class="wrap">
+    <!--头部导航栏-->
+    <%- include('cmnheader')%>
+    <!--图片轮播效果-->
+    <div id="imgPlayer">
+        <div class="img_list">
+            <ul>
+                <li>
+                    <a href="javascript:;"><img src="images/ad1.jpg" alt=""></a>
+                </li >
+                <li style="display:none">
+                    <a href=""><img src="images/ad2.jpg" alt=""></a>
+                </li>
+                <li style="display:none">
+                    <a href=""><img src="images/ad3.jpg" alt=""></a>
+                </li>
+            </ul>
+        </div>
+        <div class="new_arr">
+            <a  class="" id="al" onclick="switchPhoto(true)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
+            <a  class="fr" id="ar" onclick="switchPhoto(false)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+        </div>
+
+    </div>
+    <div class="indexDataBox">
+        <div class="mainInnerBox clearfix">
+            <div class="indexDataItem" style="margin-left: 17%;">
+                <p class="dataText j_pro">14299</p>
+                <div class="xmzs">项目总数</div>
+            </div>
+            <div class="indexDataItem" style="margin-left: 239px;">
+                <p class="dataText j_user">769031</p>
+                <div class="ljzcr">累计支持人</div>
+            </div>
+            <div class="indexDataItem" style="margin-left: 210px;">
+                <p class="dataText j_money" >168,015,276</p>
+                <div class="ljzzje">累计筹资金额</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="typeNav clearfix">
+            <li class="active">最新上线</li>
+            <li>热门项目</li>
+            <li>精彩完成</li>
+        </ul>
+        <ul class="typeCon">
+            <!--类目精选-->
+            <li class="cate-con">
+                <h3 class="cate-title">最新上线</h3>
+                <ul class="proList clearfix row" id="new_list">
+                    <!--<li class="item" ProName="watch">-->
+                    <!--<a class="item-link" href="javascript:void(0)" target="_blank">-->
+                    <!--<img src="images/prodect1.jpg">-->
+                    <!--<div class="item-info">-->
+                    <!--<p class="title">令人惊奇的背包背包-->
+                    <!--</p>-->
+                    <!--<div class="other-info">-->
+                    <!--<div class="every-info info-deal">-->
+                    <!--<p class="info-name">达成率</p>-->
+                    <!--<p class="info-num">234%</p>-->
+                    <!--</div>-->
+                    <!--<div class="every-info info-dollar">-->
+                    <!--<p class="info-name">已筹金额</p>-->
+                    <!--<p class="info-num">9999</p>-->
+                    <!--</div>-->
+                    <!--<div class="every-info info-support">-->
+                    <!--<p class="info-name">支持人数</p>-->
+                    <!--<p class="info-num">888</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                    <!--</li>-->
+
+                </ul>
+            </li>
+            <!--已经完成-->
+            <li class="cate-con" style="display:none">
+                <h3 class="cate-title">热门项目</h3>
+                <ul class="proList clearfix" id="hot_list">
+
+                </ul>
+            </li>
+            <li class="cate-con" style="display:none">
+                <h3 class="cate-title">精彩完成</h3>
+                <ul class="proList clearfix" id="good_list">
+
+                </ul>
+            </li>
+        </ul>
+
+
+
+    </div>
+</div>
+<script type="text/javascript" src="javascripts\jquery-2.1.3.js"></script>
+<script type="text/javascript">
+    var username="";
+    //获取缓存中的name，并替换节点，参数为替换节点的父节点
+    function getStorage(ele){
+         username = window.localStorage.getItem("name");
+        if(username){
+            $(ele).children().remove();
+            var $user = $('<span class="name-item">hi，'+username+'</span>'),
+                    $exit = $('<a class="nav-item J-exit" href="javascript:;">退出登录</a>');
+            $(ele).append($user).append($exit);
+        }
+    }
+    getStorage('.J-user-info');
+    //退出登录
+    function exit(){
+        document.cookie = "name=\"\"";
+        window.localStorage.removeItem("name");
+        window.location.href="login";
+    }
+    $('header').on('click','.J-exit',exit);
+
+    //图片幻灯播放
+    var index = $(".img_list li").children($(this)).index();
+    var index = $(".img_list li").children($(this)).index();
+    function switchPhoto(flag){
+        $(".img_list li").css("display","none");
+        if (!flag) {
+            index++;
+            if (index > 2) {index = 0}
+        }else {
+            index--;
+            if (index < 0) {index = 2}
+        }
+        $(".img_list li").eq(index).css("display","block");
+    }
+    //自动播放banner图
+    function autoPlay(){
+        focus=setInterval(function(){
+            switchPhoto(false);},2000);
+    }
+    autoPlay();
+
+    function stopPlay(){
+        clearInterval(focus);
+    }
+    $('.img_list img').on('mouseover',stopPlay());
+    $('.img_list li').on('mouseout',autoPlay());
+
+    function getTotal(){
+        $.ajax({
+            type: "get",
+            url: "/getTotal",
+            async: false,
+            success: function(data) {
+                $('.j_user').html(data.user);
+                $('.j_pro').html(data.pro);
+                $('.j_money').html(data.money);
+            },
+            error: function(data) {
+
+            }
+        });
+    }
+    getTotal();
+    //新建项目
+    function createPro(npro,ctn){
+        var progress = Math.round(npro.currentMoney/npro.goalMoney*100)+ "%";
+        var img3src ="images\\" +JSON.parse(npro.img)[0];
+        //创建项目节点
+        var item = $('<li class="item" data-proid="'+npro.selfid+'"></li>'),
+             itemLink = $(' <a class="item-link" href="javascript:void(0)" target="_blank"></a>');
+        var otherInfo = $('<div class="other-info"></div>'),
+             itemInfo = $('<div class="item-info"></div>'),
+                title = $('<p class="title">'+npro.proName+'</p>');
+        var support = $('<div class="every-info info-support"><p class="info-name">支持人数</p></div>'),
+            dollar  = $('<div class="every-info info-dollar"><p class="info-name">已筹金额</p></div>'),
+            deal    = $('<div class="every-info info-dollar"><p class="info-name">达成率</p></div>');
+        support.append('<p class="info-num">'+npro.supportNum+'</p>');
+        dollar.append('<p class="info-num">'+npro.currentMoney+'</p>');
+        deal.append('<p class="info-num">'+progress+'</p>');
+        otherInfo.append(deal).append(dollar).append(support);
+        itemInfo.append(title).append(otherInfo);
+        itemLink.append('<img src="'+img3src+'">').append(itemInfo);
+        item.append(itemLink);
+        $(ctn).append(item);
+
+    }
+
+    getNewList();
+    getOverList();
+    getHotlist();
+
+    function getNewList(){
+        //获取最新项目
+        $.ajax({
+            type: "get",
+            url: "/getProByTime",
+            async: false,
+            success: function(data) {
+                var proNum = data.length;
+                var ctn = '#new_list';
+                for(var i = 0;i<proNum;i++){
+                    createPro(data[i],ctn);
+
+                }
+                goDetail(data);
+
+            },
+            error: function(data) {
+                alert("失败");
+            }
+        });
+
+    }
+
+    function getOverList(){
+        //获取完成项目
+        $.ajax({
+            type: "post",
+            url: "/getProByStatus",
+            async: false,
+            data:{protype:"finished"},
+            success: function(data) {
+                var proNum = data.length;
+                var ctn = '#good_list';
+                for(var i = 0;i<proNum;i++){
+                    createPro(data[i],ctn);
+
+                }
+                goDetail(data);
+
+            },
+            error: function(data) {
+                alert("失败");
+            }
+        });
+    }
+    function getHotlist(){
+        //获取最热项目
+        $.ajax({
+            type: "get",
+            url: "/getProByMoney",
+            async: false,
+            success: function(data) {
+                var proNum = data.length;
+                var ctn = '#hot_list';
+                for(var i = 0;i<proNum;i++){
+                    createPro(data[i],ctn);
+
+                }
+                goDetail(data);
+
+            },
+            error: function(data) {
+                alert("失败");
+            }
+        });
+
+
+    }
+
+
+    function goDetail(data){
+        $(".proList li").click(function(){
+            index = $(this).index();
+            var id = $(this).context.attributes[1].nodeValue;
+           window.location.href="/detail?proid="+id;
+
+        })
+    }
+
+    //详情页tab选项卡的切换
+    function tabchange() {
+        $(".typeNav li").click(function () {
+            $(".typeNav li").eq($(this).index())
+                    .addClass("active")
+                    .siblings()
+                    .removeClass('active');
+            $(".typeCon > li").eq($(this).index())
+                    .css('display', 'block')
+                    .siblings()
+                    .css('display', 'none');
+
+        });
+    }
+
+    tabchange();
+
+
+</script>
+
+</body>
+</html>

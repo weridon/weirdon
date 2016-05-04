@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+    <title>后台管理-项目审核</title>
+    <link href="/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/management.css">
+</head>
+<body>
+<%- include('cmnMngNav') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 sidebar">
+            <section>
+                <h2>用户</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="management">用户管理</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>项目</h2>
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="projectAudit">项目审核</a> <span class="sr-only">(current)</span></li>
+                    <li><a href="manageProTrend">项目追踪</a> <span class="sr-only">(current)</span></li>
+                </ul>
+            </section>
+            <section>
+                <h2>资金</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="manageMoney">项目资金</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="col-sm-11 col-sm-offset-1 main pro-manage">
+            <h1 class="page-header">项目</h1>
+            <!--charts-->
+            <div class="row placeholders">
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>项目审核状态分布</h4>
+                    <div id="pro-check-data"></div>
+                </div>
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>项目完成状态分布</h4>
+                    <div id="pro-finish-data"></div>
+                </div>
+            </div>
+            <!--data-->
+            <h2 class="sub-header">项目审核</h2>
+            <div class="search-box">
+                <form class="form-inline">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <label>审核状态</label>
+                    <select class="form-control">
+                        <option value="all">--全部--</option>
+                        <option value="0">待审核</option>
+                        <option value="1">已通过</option>
+                        <option value="2">未通过</option>
+                    </select>
+                    <input id="find-pro-btn" class="btn btn-primary btn-sm" type="button" value="查询">
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>项目标题</th>
+                            <th>项目图片</th>
+                            <th>发起人</th>
+                            <th>项目类型</th>
+                            <th>项目简介</th>
+                            <th class="text-center">筹资天数</th>
+                            <th class="text-center">筹资金额</th>
+                            <th>更多信息</th>
+                            <th>操作</th>
+                            <th>审核状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="J-pro-info">
+                    <% for(var i= 0,len=group.length;i<len;i++){ %>
+                        <tr>
+                            <td class="protitle"><%= group[i].proName||'暂无' %><input type="hidden" value="<%= group[i].selfid %>">
+                            </td>
+                            <td>
+                                <% if(group[i].img){%>
+                                <img src="./images/<%= JSON.parse(group[i].img)[0] %>">
+                                <% }else{ %>
+                                <img src="./images/noimg.jpg" alt="">
+                                <% } %>
+                            </td>
+                            <td><%= group[i].username||'暂无' %></td>
+                            <td><%= group[i].proType %></td>
+                            <td class="protitle"><%= group[i].proTitle||'暂无' %></td>
+                            <td class="text-center"><%= group[i].during %></td>
+                            <td class="text-center"><%= group[i].goalMoney %></td>
+                            <td><a href="javascript:;" class="btn btn-sm btn-success J-find-more">查看</a></td>
+                            <td>
+                                <a class="btn btn-info btn-sm J-check" href="javascript:;">审核</a>
+                                <a class="btn btn-warning btn-sm J-delete" href="javascript:;">删除</a>
+                            </td>
+                            <% if(group[i].isCheck == 0){ %>
+                            <td class="waiting-check"><span class="glyphicon glyphicon-question-sign"></span>待审核</td>
+                            <% }else if(group[i].isCheck == 1){ %>
+                            <td class="check-pass"><span class="glyphicon glyphicon-ok"></span>已通过</td>
+                            <% }else{%>
+                            <td class="check-unpass"><span class="glyphicon glyphicon-remove"></span>未通过</td>
+                            <% } %>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jq-dialog">
+    <div class="jq-dialog-inner">
+        <div class="jq-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="jq-dialog-con">
+            <p>是否通过该项目审核</p>
+        </div>
+        <div class="jq-btn-group">
+            <a class="jq-sure-btn" href="javascript:;">通过</a>
+            <a class="jq-cancel-btn" href="javascript:;">不通过</a>
+        </div>
+    </div>
+</div>
+<div class="sec-dialog">
+    <div class="sec-dialog-inner">
+        <div class="sec-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="sec-dialog-con">
+            <p>确定删除该项目吗？删除后信息不可恢复</p>
+        </div>
+        <div class="sec-btn-group">
+            <a class="sec-sure-btn" href="javascript:;">确定</a>
+            <a class="sec-cancel-btn" href="javascript:;">取消</a>
+        </div>
+    </div>
+</div>
+<div class="mask detail-mask">
+    <div class="dtl-inner">
+        <a class="J-dtl-close fr" href="javascript:;">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+        <div class="dtl-item">
+            <div class="head-line"></div>
+            <h3>项目详情</h3>
+            <p class="J-pro-dtl">dtl</p>
+        </div>
+        <div class="dtl-item">
+            <div class="head-line"></div>
+            <h3>项目风险</h3>
+            <p class="J-pro-risk">risk</p>
+        </div>
+        <div class="dtl-item">
+            <div class="head-line"></div>
+            <h3>项目回报</h3>
+            <div class="J-pro-payback">
+                <div class="payback-item">
+                    <p><span class="item-title">支持：</span><span>10</span>元</p>
+                    <p><span class="item-title">回报：</span><span></span></p>
+                </div>
+                <div class="payback-item">
+                    <p><span class="item-title">支持：</span><span>10</span>元</p>
+                    <p><span class="item-title">回报：</span><span>酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶酸奶~</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-main="javascripts/projectAudit.js" src="javascripts/require.js"></script>
+</body>
+</html>

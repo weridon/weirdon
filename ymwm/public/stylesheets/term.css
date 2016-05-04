@@ -1,0 +1,226 @@
+/* line 5, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 4, ../sass/_common.scss */
+.fl {
+  float: left;
+}
+
+/* line 7, ../sass/_common.scss */
+.fr {
+  float: right;
+}
+
+/* line 10, ../sass/_common.scss */
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: ' ';
+}
+
+/* line 15, ../sass/_common.scss */
+.clearfix:after {
+  clear: both;
+}
+
+/* line 18, ../sass/_common.scss */
+.clearfix {
+  *zoom: 1;
+}
+
+/* line 21, ../sass/_common.scss */
+.none {
+  display: none;
+}
+
+/* line 24, ../sass/_common.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 27, ../sass/_common.scss */
+html {
+  font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 1, ../sass/_header.scss */
+header {
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+  font-size: 14px;
+}
+/* line 5, ../sass/_header.scss */
+header .logo {
+  margin-top: 12px;
+}
+/* line 8, ../sass/_header.scss */
+header nav {
+  margin-left: 10px;
+}
+/* line 11, ../sass/_header.scss */
+header .nav-item {
+  display: inline-block;
+  width: 80px;
+  height: 70px;
+  vertical-align: middle;
+  line-height: 70px;
+  text-align: center;
+}
+/* line 18, ../sass/_header.scss */
+header .nav-item:hover {
+  background-color: #f2f3f4;
+  text-decoration: none;
+}
+/* line 23, ../sass/_header.scss */
+header .name-item {
+  display: inline-block;
+  height: 70px;
+  vertical-align: middle;
+  line-height: 70px;
+  text-align: center;
+}
+/* line 30, ../sass/_header.scss */
+header .start-btn {
+  position: relative;
+  display: inline-block;
+  margin-top: 18px;
+  margin-left: 20px;
+  width: 100px;
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  background: -webkit-linear-gradient(to bottom, #55b5ff 0%, #2e86cb 100%);
+  background: linear-gradient(to bottom, #55b5ff 0%, #2e86cb 100%);
+  text-align: center;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 43, ../sass/_header.scss */
+header .start-btn span {
+  position: relative;
+  transition: all .5s ease-in-out;
+}
+/* line 47, ../sass/_header.scss */
+header .start-btn:hover {
+  text-decoration: none;
+}
+/* line 49, ../sass/_header.scss */
+header .start-btn:hover span {
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+/* line 54, ../sass/_header.scss */
+header .user-info {
+  height: 70px;
+  line-height: 70px;
+}
+
+/* line 3, ../sass/term.scss */
+body {
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+  line-height: 1.428571429;
+  color: #282828;
+  background-color: #fff;
+}
+
+/* line 10, ../sass/term.scss */
+header a {
+  color: #000;
+}
+
+/* line 13, ../sass/term.scss */
+.container.content {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 20px;
+}
+
+/* line 19, ../sass/term.scss */
+.site-info h2, .site-info .h2 {
+  font-size: 22px;
+}
+/* line 22, ../sass/term.scss */
+.site-info h4.nav-title {
+  margin-top: 30px;
+  border-left: 3px solid #26becb;
+  padding-left: 10px;
+}
+/* line 27, ../sass/term.scss */
+.site-info .nav-title {
+  font-size: 16px;
+  color: #26becb;
+  line-height: 1;
+  border-left: 3px solid #26becb;
+  padding-left: 5px;
+  margin: 15px;
+}
+/* line 35, ../sass/term.scss */
+.site-info p {
+  margin: 0 0 8.5px;
+}

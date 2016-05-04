@@ -1,0 +1,107 @@
+@import '../_common.scss';
+@import '../components/_dialog.scss';
+
+html{
+  font-size:14px;
+}
+#user-check-data,
+#user-regist-data,
+#money-grant-data,
+#money-raise-data{
+  width:300px;
+  height:300px;
+  margin:0 auto;
+}
+tbody{
+  border-bottom:1px solid #eee;
+}
+.no-user-info{
+  padding-top:90px;
+  background:url(../../images/warn.png) no-repeat center -172px;
+}
+.no-user-info{
+  font-size:20px;
+  line-heigth:30px;
+  text-align:center;
+}
+.waiting-check{
+  color:#f0ad4e;
+  line-height:25px;
+}
+.check-pass{
+  color:#5cb85c;
+  line-height:25px;
+}
+.check-unpass{
+  color:#d9534f;
+  line-height:25px;
+}
+.main{
+  padding-top:71px;
+}
+h1{
+  font-size:36px;
+}
+h2{
+  font-size:24px;
+}
+.navbar-brand{
+  padding:0;
+  img{
+    display:inline-block;
+    vertical-align: middle;
+  }
+}
+.sec-dialog{
+  display:none;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color:rgba(0,0,0,.5);
+  z-index:1001;
+  .sec-dialog-inner{
+    position:absolute;
+    top:50%;
+    left:50%;
+    @include transform(translate(-50%,-50%));
+    border:2px solid #eee;
+    @include border-radius(3px);
+    background-color:#fff;
+  }
+  .sec-dialog-con{
+    margin:50px 40px;
+    text-align:center;
+    font-size:15px;
+  }
+  .sec-btn-group{
+    text-align:center;
+    margin:20px 0 10px;
+    a{
+      display:inline-block;
+      width:70px;
+      line-height:30px;
+      font-size:13px;
+      color:#fff;
+      background-color:#50abf2;
+      margin:0 10px;
+      text-decoration:none;
+    }
+  }
+  .sec-close-tag{
+    margin:10px;
+    cursor:pointer;
+  }
+}
+.search-box{
+  padding:20px 0 10px;
+  font-size:16px;
+}
+td{
+  vertical-align:middle!important;
+}
+td img{
+  width:150px;
+  height:100px;
+}

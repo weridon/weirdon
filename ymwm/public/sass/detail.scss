@@ -1,0 +1,262 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_header.scss";
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.clearfix:after {
+    content: ' ';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;    
+}
+.none{
+	display:none;
+}
+a{
+	text-decoration: none;
+}
+
+.wrap{
+    overflow-x: hidden;
+}
+.pcontainer{
+
+    border-top: 1px solid #eeeeee;
+    background-color: #f5f6f8;
+    padding: 0px 0px 30px 0px;
+    .projectDetail{
+        width: 85%;
+        border-radius: 3px;
+        background-color: #fff;
+        border: 1px solid #f1f1f1;
+        padding-bottom: 40px;
+        margin: 0 auto;
+        margin-top: 30px;
+        position: relative;
+        .project_title{
+            height: 102px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .project_title .sImg{
+            float: left;
+            margin: 18px 0 0 36px;
+            border-radius: 50%;
+            width: 68px;
+            height: 68px;
+        }
+        .project_title h1{
+            font-size: 24px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .project_title .attbox{
+            text-align: center;
+            height:102px;
+            width: 94px;
+            border-left: 1px solid #f1f1f1;
+            cursor: pointer;
+            position: relative;
+            i{
+                color:#50abf2;
+            }
+            .guanzhu,.zhichi{
+                width: 25px;
+                height: 25px;
+                font-size: 25px;
+                display: block;
+                margin: 32px auto 10px auto;
+            }
+        }
+        .project_tabs{
+            height: 60px;
+            background-color: #e7ebef;
+            .tabs_wrap{
+                margin-bottom: 0;
+                padding: 15px 0;
+            }
+            .tabs_wrap li{
+                float: left;
+                font-size: 13px;
+                height: 34px;
+                line-height: 34px;
+                padding: 0px 15px;
+                margin-left: 25px;
+                cursor: pointer;
+                @include border-radius(5px);
+                &:hover{
+                    background: #ddd;
+                }
+
+            }
+            li.selected{
+
+                background: #fff;
+                &:hover{
+                    background: #fff;
+                }
+            }
+        }
+        .project_content{
+            width: 66%;
+            margin-top: -2px;
+            border: 1px solid #e3e3e3;
+            padding:20px;
+            .project_main{
+                .cover img{
+                    width: 100%;
+                }
+                .content{
+                    h2{
+                        color: #2a2a2a;
+                        font-size: 25px;
+
+                        line-height: 28px;
+                        font-weight: bold;
+                    }
+                    p{
+                        color: #2a2a2a;
+                        line-height: 22px;
+                        font-size: 18px;
+                        margin-bottom: 20px;
+                        word-break: break-all;
+                    }
+                }
+            }
+        }
+        .project_situation{
+            width: 30%;
+            margin-top: -2px;
+            border-top:1px solid #e0e0e0;
+            margin-right: 20px;
+            .box{
+                background-color: #eff7f9;
+                padding:20px;
+                margin: 20px 0;
+                .money-box{
+                    h2{
+                        font-weight: 400;
+                        font-size: 20px;
+                        color: #666;
+                    }
+                    .current-money{
+                        margin: 10px 0 20px 0;
+                        font-size: 30px;
+                        color: #50abf2;
+                        font-weight: 700;
+                    }
+                    .target-money{
+                        color: #999;
+                        line-height: 30px;
+                        font-size: 18px;
+                        margin-top: 10px;
+
+                    }
+                }
+                .reserve{
+                    padding:10px;
+                    background-color: #FFF;
+                    @include border-radius(5px);
+                    .project-status-bar{
+                        width: 100%;
+                        @include inline-block;
+                        .schedule-bar{
+                            @include inline-block;
+                            width: 85%;
+                            height: 10px;
+                            background: url(../images/progress.gif) repeat;
+                        }
+                    }
+                    .projects-schedule-data{
+                        text-align: center;
+                        margin: 10px 0;
+                        span{
+                            font-size: 14px;
+                        }
+                        span.data-number{
+                            color: #50abf2;
+                        }
+                    }
+                }
+            }
+            .repays{
+                .repay-box{
+
+                    div{
+                        border: 10px solid #eff8f7;
+                        margin-bottom: 8px;
+                        padding: 20px;
+                        &:hover{
+                            border: 10px solid #ccecec;
+                        }
+                        span{
+                            font-size: 23px;
+                            color: #50abf2;
+                            font-weight: 700;
+                        }
+                        a{
+                            @include inline-block;
+                            float:right;
+                            text-align: center;
+                            width: 60px;
+                            font-size: 17px;
+                            line-height: 31px;
+                            color: #fff;
+                            background-color: #50abf2;
+                            border-color: #3d9ee9;
+                            text-decoration: none;
+                            @include border-radius(5px);
+
+                        }
+                        p{
+                            margin-top: 20px;
+                        }
+                    }
+                }
+            }
+            .explain{
+                background: #fff9c9;
+                position: relative;
+                padding: 20px 30px;
+                margin-left: 10px;
+                h2 {
+                    color: #8d8b8e;
+                    font-size: 19px;
+                    padding: 11px 0
+                }
+                h3 {
+                    font-size: 13px;
+                    color: #8d8b8e;
+                    padding: 10px 0
+                }
+                .explain-p {
+                    color: #747474;
+                    line-height: 20px;
+                    margin-bottom: 20px
+                }
+                b{
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    font-size: 0;
+                    width: 0;
+                    height: 0;
+                    display: block;
+                    border-color: #fff1a6 #fff #fff #fff1a6;
+                    border-style: solid;
+                    border-width: 20px;
+
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,251 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "_header.scss";
+.fl{
+	float:left;
+}
+.fr{
+	float:right;
+}
+.clearfix:after {
+    content: ' ';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;    
+}
+.none{
+	display:none;
+}
+a{
+	text-decoration: none;
+}
+html{
+	font-family:"Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#imgPlayer{
+  height: 384px;
+  overflow: hidden;
+  position:relative;
+  z-index: 0;
+  &:hover{
+	.new_arr{display:block;}
+  }
+  .new_arr{
+	width:100%;
+	height:0;
+	display: none;
+	position:absolute;
+	top:40%;
+	z-index: 100;
+	span{
+	  font-size: 40px;
+	  font-weight: 100;
+	  margin: 0 50px;
+	}
+
+  }
+  .img_list{
+	width:100%;
+	position: relative;
+	height:384px;
+	z-index: 100;
+	ul{
+	  position: absolute;
+	  left: 0px;
+		right:0;
+	}
+	li{
+	  float: left;
+	  width: 100%;
+	}
+	img{
+	  width: 100%;
+	  height:384px;
+
+	}
+  }
+
+}
+.indexDataBox {
+  height: 120px;
+  background-color: #f6f7f8;
+  border-bottom: 1px solid #eee;
+}
+
+.indexDataItem {
+  float: left;
+  width: 120px;
+  margin-left: 17%;
+}
+
+.indexDataItem .dataText {
+  font-size: 40px;
+  color: #50abf2;
+  padding: 17px 0px 0px 0px;
+  font-family: 'GothamBold','GothamBold1';
+  word-wrap: normal;
+  word-break: normal;
+}
+
+.indexDataItem>div {
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 35px;
+  background: url(../images/indexDatabg.png) no-repeat;
+  margin-top: -8px;
+}
+
+.indexDataItem>div.xmzs {
+  background-position: 0px 0px;
+  margin:10px 0;
+}
+
+.indexDataItem>div.ljzcr {
+  background-position: 0px -30px;
+  margin:10px 0;
+}
+
+.indexDataItem>div.ljzzje {
+  background-position: 0px -60px;
+  margin:10px 0;
+}
+
+.container{
+  position:relative;
+  .typeNav{
+	margin-top: 15px;
+	border-bottom: 1px solid #ddd;
+  }
+
+  .typeNav li{
+	color: #337ab7;
+	border-radius: 5px 5px 0 0;
+	border: 1px solid transparent;
+	float: left;
+	cursor: default;
+	margin-bottom: -1px;
+	line-height: 30px;
+	padding: 10px;
+	&:hover{
+	  background-color: #eee;
+	}
+  }
+  .typeNav .active{
+	border-top:1px solid #ddd;
+	border-right:1px solid #ddd ;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #FFF;
+	border-radius: 5px 5px 0 0;
+	color: #555;
+	cursor: default;
+	background-color: #fff;
+	border-bottom-color: transparent;
+	&:hover{
+	  background-color: #FFF;
+	}
+  }
+  .cate-con{
+	margin:0 auto;
+	.cate-title{
+	  font-size: 30px;
+	  font-weight: bold;
+	  text-align: center;
+	  padding: 26px 40px 26px 0px;
+	  .hot{
+		display: inline-block;
+		margin:0 0 0 15px;
+		width: 40px;
+		line-height: 20px;
+		background: #ff645a;
+		border-radius: 10px;
+		font-size: 14px;
+		font-family: "Helvetica Neue";
+		color: #fff;
+		text-align: center;
+	  }
+	}
+	.item {
+	  float: left;
+	  width: 23%;
+	  height: 182px;
+	  border: 1px solid #e6e6e6;
+	  margin: 0 0 20px 15px;
+	  background-color: #fff;
+	  overflow: hidden;
+	  img{
+		width: 100%;
+		height: 182px;
+	  }
+	  &:hover{
+		.item-info{
+		  top: -80px;
+		}
+	  }
+	}
+	.item-info {
+	  position: relative;
+	  top: -50px;
+	  left: 0;
+	  color: #fff;
+	  background-color: rgba(0,0,0,0.4);
+	  -webkit-transition: all .5s;
+	  -moz-transition: all .5s;
+	  -ms-transition: all .5s;
+	  -o-transtion: all .5s;
+
+	  .title {
+		height: 30px;
+		font-size: 14px;
+		font-family: "microsoft yahei";
+		line-height: 15px;
+		padding: 5px 10px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-decoration:none ;
+	  }
+	  .other-info {
+		font-size: 0;
+		width:100%;
+		height: 46px;
+		padding-top: 9px;
+		.every-info {
+		  float: left;
+		  width: 25%;
+		  margin: 0 10px;
+		  p {
+
+			text-align: center;
+		  }
+		  p.info-num {
+			font-size: 14px;
+			font-family: Verdana;
+			line-height: 14px
+		  }
+		  p.info-name {
+			font-size: 12px;
+			line-height: 12px;
+			font-family: "SimSun";
+			margin-top: 7px
+		  }
+		}
+		.every-info.info-deal {
+
+
+		}
+		.every-info.info-dollar {
+
+		}
+		.every-info.info-support {
+
+
+		}
+	  }
+	}
+  }
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, user-scalable=no">
+    <title>发起项目</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    <div class="container-fluid start-pro">
+        <%- include('cmnheader')%>
+        <!--content-->
+        <div class="content clearfix J-content">
+            <!--info-step-->
+            <div class="row">
+                <div class="info-list-wrap clearfix">
+                    <ul class="col-xs-12 info-list fl">
+                        <li class="fl info-step info-item-active J-info-step" data-index="1"><span class="glyphicon glyphicon-ok"></span> 基本信息</li>
+                        <li class="fl info-step J-info-step" data-index="2"><span class="glyphicon glyphicon-ok"></span> 项目信息</li>
+                        <li class="fl info-step J-info-step" data-index="3"><span class="glyphicon glyphicon-ok"></span> 详细描述</li>
+                        <li class="fl info-step J-info-step" data-index="4"><span class="glyphicon glyphicon-ok"></span> 回报设置</li>
+                    </ul>
+                    <a class="fl pre-scan-btn" href="javascript:;">预览</a>
+                </div>
+            </div>
+            <!-- info-step-end -->
+            <form method="post" name="userinfo">
+                <!--basic-con -->
+                <div data-show="1" class="row basic-info J-basic-info">
+                    <div class="col-sm-offset-2 col-sm-8 col-xs-12 basic-info-inner">
+                        <div class="basic-info-con">
+                            <h2 class="info-title">发起人信息</h2>
+                            <div class="form-group">
+                                <label class="sr-only" for="username">姓名</label>
+                                <input name="username" class="form-info user-info" type="text" placeholder="输入中文姓名，2~20个字">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="idcard">身份证号</label>
+                                <input name="idcard" class="form-info user-info" type="text" placeholder="二代身份证，输入数字或字母">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="tele">手机号</label>
+                                <input name="tele" class="form-info user-info" type="number" placeholder="手机号">
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="address">地址</label>
+                                <input name="address" class="form-info user-info" type="text" placeholder="请填写您的详细地址">
+                            </div>
+                        </div>
+                        <div class="basic-info-con">
+                            <h2 class="info-title">项目类型</h2>
+                            <div class="type-wrap clearfix">
+                                <div class="J-type fl">
+                                    <span class="type-item type-item-active" data-type="technology">科技</span>
+                                    <input name="proType" type="radio" value="科技" checked="checked">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="public">公益</span>
+                                    <input name="proType" type="radio" value="公益">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="agriculture">农业</span>
+                                    <input name="proType" type="radio" value="农业">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="entertainment">娱乐</span>
+                                    <input name="proType" type="radio" value="娱乐">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="art">艺术</span>
+                                    <input name="proType" type="radio" value="艺术">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="publish">出版</span>
+                                    <input name="proType" type="radio" value="出版">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="house">房产</span>
+                                    <input name="proType" type="radio" value="房产">
+                                </div>
+                                <div class="J-type fl">
+                                    <span class="type-item" data-type="other">其它</span>
+                                    <input name="proType" type="radio" value="其它">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-apart">
+                            <a data-next="2" class="btn-next J-next" href="javascript:;">下一步</a>
+                        </div>
+                    </div>
+                </div>
+                <!--basic-con-end-->
+                <!--project-con-->
+                <div data-show="0" class="row project-info slide-to-right J-project-info">
+                    <div class="col-sm-offset-2 col-sm-8 col-xs-12 basic-info-inner">
+                        <div class="basic-info-con">
+                            <h2 class="info-title">项目信息</h2>
+                            <div class="form-group">
+                                <label for="proName">项目标题</label>
+                                <input name="proName" class="form-info pro-info" type="text" placeholder="给自己取个响亮的名字吧">
+                            </div>
+                            <div class="form-group">
+                                <label for="proTitle">项目简介</label>
+                                <input name="proTitle" class="form-info pro-info" type="text" placeholder="一句话介绍一下你的项目">
+                            </div>
+                            <div class="form-group">
+                                <label for="goalMoney">筹资金额</label>
+                                <input name="goalMoney" class="form-info pro-info" type="number" placeholder="最低500元">元
+                            </div>
+                            <div class="form-group">
+                                <label for="during">筹资天数</label>
+                                <input name="during" class="form-info pro-info" type="number" placeholder="10~90天">天
+                            </div>
+                            <div class="form-group">
+                                <label for="">项目图片</label>
+                                <a class="upload-file J-upload" href="javascript:;"></a>
+                                <input id="upload-file" type="file">
+                                <span>点击添加</span>
+                            </div>
+                        </div>
+                        <div class="basic-info-con">
+                            <h2 class="info-title">图片预览</h2>
+                            <div class="J-prescan clearfix">
+                            </div>
+                            <input class="J-proimg" name="img" type="hidden">
+                        </div>
+                        <div class="btn-apart">
+                            <a data-last="1" class="btn-next J-last" href="javascript:;">上一步</a>
+                            <a data-next="3" class="btn-next J-next" href="javascript:;">下一步</a>
+                        </div>
+                    </div>
+                </div>
+                <!--project-con-end-->
+                <!--detail-con-->
+                <div data-show="0" class="row detail-info slide-to-right J-detail-info">
+                    <div class="col-sm-offset-2 col-sm-8 col-xs-12 basic-info-inner">
+                        <div class="basic-info-con">
+                            <h2 class="info-title">项目详细信息</h2>
+                            <textarea name="proDescribe" id="proDescribe" rows="10" cols="30">请在这一部分说明你的项目不同寻常的特色，为什么需要大家的支持以及详细的资金用途，这会增加你项目的可信度并由此提高筹资的成功率。</textarea>
+                        </div>
+                        <div class="basic-info-con">
+                            <h2 class="info-title">可能存在的风险</h2>
+                            <textarea name="proRisk" id="proRisk" rows="10" cols="30">请在此标注你的项目在实施过程中可能存在的风险，让支持者对你的项目有全面而清晰的认识。</textarea>
+                        </div>
+                        <div class="btn-apart">
+                            <a data-last="2" class="btn-next J-last" href="javascript:;">上一步</a>
+                            <a data-next="4" class="btn-next J-next" href="javascript:;">下一步</a>
+                        </div>
+                    </div>
+                </div>
+                <!--detail-con-end-->
+                <!--payback-con-->
+                <div data-show="0" class="row payback-info slide-to-right J-payback-info">
+                    <div class="col-sm-offset-2 col-sm-8 col-xs-12 basic-info-inner">
+                        <div class="basic-info-con">
+                            <h2 class="info-title">回报设置</h2>
+                            <div class="payback-con">
+                                <div class="payback-outer">
+                                    <h3>回报1</h3>
+                                    <div class="payback-inner">
+                                        <div class="payback-form-group">
+                                            <label>支持金额</label>
+                                            <input name="pb1Money" class="form-info" type="text" placeholder="输入需要用户支持的金额">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报标题</label>
+                                            <input name="pb1Title" class="form-info" type="text" placeholder="输入回报标题">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报内容</label>
+                                            <textarea name="pb1Con" id="pb1-con" rows="10" cols="30"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="btn btn-info J-add-payback" data-paystep="0" href="javascript:;"><span class="glyphicon glyphicon-plus"></span>添加回报</a>
+                                    </div>
+                                </div>
+                                <div class="payback-outer payback-slide-down">
+                                    <h3>回报2</h3>
+                                    <div class="payback-inner">
+                                        <div class="payback-form-group">
+                                            <label>支持金额</label>
+                                            <input name="pb2Money" class="form-info" type="text" placeholder="输入需要用户支持的金额">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报标题</label>
+                                            <input name="pb2Title" class="form-info" type="text" placeholder="输入回报标题">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报内容</label>
+                                            <textarea name="pb2Con" id="pb1-con" rows="10" cols="30"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="btn btn-info J-add-payback" data-paystep="0" href="javascript:;"><span class="glyphicon glyphicon-plus"></span>添加回报</a>
+                                    </div>
+                                </div>
+                                <div class="payback-outer payback-slide-down">
+                                    <h3>回报3</h3>
+                                    <div class="payback-inner">
+                                        <div class="payback-form-group">
+                                            <label>支持金额</label>
+                                            <input name="pb3Money" class="form-info" type="text" placeholder="输入需要用户支持的金额">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报标题</label>
+                                            <input name="pb3Title" class="form-info" type="text" placeholder="输入回报标题">
+                                        </div>
+                                        <div class="payback-form-group">
+                                            <label>回报内容</label>
+                                            <textarea name="pb3Con" id="pb1-con" rows="10" cols="30"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="btn-apart">
+                            <a data-last="3" class="btn-next J-last" href="javascript:;">上一步</a>
+                            <button class="btn-next J-finish" type="submit">完成</button>
+                        </div>
+                    </div>
+                </div>
+                <!--payback-con-end-->
+            </form>
+        </div>
+        <!--content end-->
+    </div>
+    <script src="./javascripts/jquery-2.2.1.min.js"></script>
+    <script src="./javascripts/startPro.js"></script>
+</body>
+</html>

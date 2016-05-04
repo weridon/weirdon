@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+    <title>后台管理系统-资金管理</title>
+    <link href="/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/management.css">
+    <style>
+        .time-end{
+            color:#d9534f;
+        }
+        .raise-success{
+            color:#5cb85c;
+        }
+        .notyet-grant{
+            color:#f0ad4e;
+        }
+    </style>
+</head>
+<body>
+<%- include('cmnMngNav') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 sidebar">
+            <section>
+                <h2>用户</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="management">用户管理</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>项目</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="projectAudit">项目审核</a> <span class="sr-only">(current)</span></li>
+                    <li><a href="manageProTrend">项目追踪</a> <span class="sr-only">(current)</span></li>
+                </ul>
+            </section>
+            <section>
+                <h2>资金</h2>
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="manageMoney">项目资金</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="col-sm-11 col-sm-offset-1 main">
+            <h1 class="page-header">资金</h1>
+            <!--charts-->
+            <div class="row placeholders">
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>资金发放状态分布</h4>
+                    <div id="money-grant-data"></div>
+                </div>
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>筹得资金/天</h4>
+                    <div id="money-raise-data"></div>
+                </div>
+            </div>
+            <!--data-->
+            <h2 class="sub-header">资金管理</h2>
+            <div class="search-box">
+                <form class="form-inline">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <label>状态</label>
+                    <select class="form-control">
+                        <option value="all">--全部--</option>
+                        <option value="0">未发放</option>
+                        <option value="1">已发放</option>
+                        <option value="2">已返还</option>
+                    </select>
+                    <input id="mny-grant-btn" class="btn btn-primary btn-sm" type="button" value="查询">
+                </form>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>项目标题</th>
+                            <th>项目图片</th>
+                            <th>发起人</th>
+                            <th>目标金额</th>
+                            <th>已筹金额</th>
+                            <th>完成状态</th>
+                            <th>操作</th>
+                            <th>资金状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% for(var i= 0,len=group.length;i<len;i++){ %>
+                        <tr>
+                            <td><%= group[i].proName||'暂无' %></td>
+                            <td><img src="/images/<%= group[i].img?JSON.parse(group[i].img)[0]:'noimg.jpg' %>"></td>
+                            <td><%= group[i].username %></td>
+                            <td><%= group[i].goalMoney %></td>
+                            <td><%= group[i].currentMoney %></td>
+                            <% if(group[i].currentMoney!=0 && group[i].currentMoney>=group[i].goalMoney){ %>
+                            <td class="raise-success"><span class="glyphicon glyphicon-thumbs-up"></span>筹资成功</td>
+                            <td>
+                                <% if(group[i].isGrant==0){%>
+                                <a class="btn btn-success btn-sm J-grant-to-user" data-index="<%= i %>" href="javascript:;">发放资金</a>
+                                <%}else{%>
+                                <a class="btn btn-success btn-sm J-already-grant" href="javascript:;">发放资金</a>
+                                <%}%>
+                                <input type="hidden" value="<%= group[i].selfid %>">
+                            </td>
+                            <% }else{ %>
+                            <td class="time-end"><span class="glyphicon glyphicon-exclamation-sign"></span>日期截止</td>
+                            <td>
+                                <% if(group[i].isGrant==0){%>
+                                <a class="btn btn-danger btn-sm J-grant-to-supporter" data-index="<%= i %>" href="javascript:;">返还资金</a>
+                                <%}else{%>
+                                <a class="btn btn-danger btn-sm J-already-grant" href="javascript:;">返还资金</a>
+                                <%}%>
+                                <input type="hidden" value="<%= group[i].selfid %>">
+                            </td>
+                            <% } %>
+                            <% if(group[i].isGrant==0){ %>
+                            <td class="notyet-grant">未发放</td>
+                            <% }else if(group[i].isGrant==1){ %>
+                            <td class="raise-success">已发放</td>
+                            <%}else{%>
+                            <td class="raise-success">已返还</td>
+                            <%}%>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('dialog')%>
+<div class="grant-mny-mask">
+    <div class="grant-mny-inner">
+        <div class="mny-list">
+            <label for="">该项目可发放金额：</label>
+            <input id="J-can-grant" type="text" readonly>
+        </div>
+        <div class="mny-list">
+            <label for="">请输入发放金额：</label>
+            <input id="J-attend-grant" type="number">
+        </div>
+        <div class="text-center">
+            <button class="btn btn-info J-sure-grant">确定</button>
+            <button class="btn btn-info J-cancel-grant">取消</button>
+            <input id="J-mny-grant-proid" type="hidden">
+            <input id="J-target-index" type="hidden">
+        </div>
+
+    </div>
+</div>
+<script data-main="javascripts/manageMoney.js" src="javascripts/require.js"></script>
+</body>
+</html>

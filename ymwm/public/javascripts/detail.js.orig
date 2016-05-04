@@ -1,0 +1,137 @@
+$(document).ready(function() {
+    //获取缓存中的name，并替换节点，参数为替换节点的父节点
+    function getStorage(ele){
+        var username = window.localStorage.getItem("name");
+        if(username){
+            $(ele).children().remove();
+            var $user = $('<span class="name-item">hi，'+username+'</span>'),
+                $exit = $('<a class="nav-item" href="login">退出登录</a>');
+            $(ele).append($user).append($exit);
+        }
+    }
+    getStorage('.J-user-info');
+
+    //获取url参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    //初始化页面
+    var proid =getQueryString("proid");
+    //获取相关项目
+    $.ajax({
+        type:'get',
+        url:'/godetail',
+        data:{
+            proid:proid
+        },
+        success:function(data){
+            reset(data);
+        },
+        error:function(){
+            alert('ajax error');
+        }
+    });
+
+    function reset(obj) {
+        var now = new Date();
+        var ft = obj.finishTime.substr(0,10);
+        var t = Date.parse(now) / (60 * 60 * 24 * 1000) - Date.parse(obj.startTime) / (60 * 60 * 24 * 1000);
+        t = Math.round(t*100);
+        var progress = Math.round(obj.currentMoney/obj.goalMoney*100)+ "%";
+        $(".project_title h1").html(obj.proTitle);
+        $(".proDes").html(obj.proDescribe);
+        $(".current-money .money").html(obj.currentMoney);
+        $(".target-money .fTime").html(ft);
+        $(".percentage").html(progress);
+        $(".target-money .money").html(obj.goalMoney);
+        $(".data-number.people").html(obj.supportNum);
+        $(".data-number.time").html(t);
+<<<<<<< origin/20160405liyan
+        $(".repay1 span").html("￥"+obj.perSupport.payBack1.pb1Money);
+        $(".repay2 span").html("￥"+obj.perSupport.payBack2.pb2Money);
+        $(".repay3 span").html("￥"+obj.perSupport.payBack3.pb3Money);
+        $(".repay1 .rpTitle").html(obj.perSupport.payBack1.pb1Title);
+        $(".repay2 .rpTitle").html(obj.perSupport.payBack2.pb2Title);
+        $(".repay3 .rpTitle").html(obj.perSupport.payBack3.pb3Title);
+        $(".repay1 .rpCon").html(obj.perSupport.payBack1.pb1Con);
+        $(".repay2 .rpCon").html(obj.perSupport.payBack2.pb2Con);
+        $(".repay3 .rpCon").html(obj.perSupport.payBack3.pb3Con);
+=======
+        $(".repay1 p").html(obj.perSupport.payBack1.pb1Con);
+        $(".repay2 p").html(obj.perSupport.payBack2.pb2Con);
+        $(".repay3 p").html(obj.perSupport.payBack3.pb3Con);
+>>>>>>> local
+        for (var i = 0; i < JSON.parse(obj.img).length; i++) {
+            insertImg(JSON.parse(obj.img)[i]);
+        }
+    }
+
+
+
+
+    //详情页tab选项卡的切换
+    function tabchange() {
+        $(".tabs_wrap li").click(function () {
+            $(".tabs_wrap li").eq($(this).index())
+                .addClass("selected")
+                .siblings()
+                .removeClass('selected');
+            $(".project_content > div").eq($(this).index())
+                .css('display', 'block')
+                .siblings()
+                .css('display', 'none');
+
+        });
+    }
+
+    tabchange();
+
+    //插入项目介绍的图片
+    function insertImg(imgsrc) {
+        var img = "<img src=\" images\\" + imgsrc + "\"" + "alt=\"\">";
+        $(".cover").append(img);
+
+    }
+
+    //支持项目
+    function mySupport(pro){
+        $(".support").click(function(){
+            var sNum =pro.supportNum + 1;
+            var num = 0;
+            var cMoney = 0;
+            if($(this).attr("id")=="repay1"){
+                num = 20;
+            }else{
+                if($(this).attr("id")=="repay2"){
+                    num = 100;
+                }else{
+                    num = 200;
+                }
+
+            }
+            cMoney = pro.currentMoney + num;
+            $(".current-money .money").html(cMoney);
+            $.ajax({
+                type: "post",
+                url: "/supportPro",
+                data:{
+                    _id:pro._id,
+                    money:cMoney,
+                    sptNum:sNum
+                },
+                success: function(data) {
+                    alert("成功");
+                },
+                error: function(data) {
+                    alert("失败");
+                }
+            })
+        })
+
+    }
+    mySupport(project);
+
+})

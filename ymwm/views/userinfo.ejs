@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scaleble=no">
+    <title>个人资料</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/account.css">
+</head>
+<body>
+<div class="wrap clearfix">
+    <!--头部导航栏-->
+    <%- include('cmnheader')%>
+    <div class="content">
+        <div class="inner">
+            <%- include('cmnsection')%>
+            <div class="innerCon">
+                <ul class="tabNav">
+                    <li class="cur">基本资料</li>
+                    <li>实名认证</li>
+                    <li>银行卡绑定</li>
+                </ul>
+                <div class="tabCon">
+                    <div>
+                        <div class="box">
+                            <div class="group">
+                                <label for="">手机：</label>
+                                <p class="j_tele">绑定手机</p>
+                            </div>
+                            <div class="group">
+                                <label for="">邮箱：</label>
+                                <p class="j_email"></p>
+                            </div>
+                            <div class="group">
+                                <img src="" alt="" class="j_img"/>
+                                <label for="">头像：</label>
+                                <input type="file" value="" />
+                            </div>
+                            <div class="group">
+                                <label for="">用户名：</label>
+                                <input type="text" class="j_username"/>
+                            </div>
+                            <div class="group">
+                                <label for="">性别：</label>
+                                <div>
+                                    <label><input class="j_sex" type="radio" name="sex" value="0" >保密</label>
+                                    <label><input class="j_women" type="radio" name="sex" value="1" >女</label>
+                                    <label><input class="j_man" type="radio" name="sex" value="2" >男</label>
+
+
+                                </div>
+                            </div>
+                            <div class="group">
+                                <label for="">简介：</label>
+                                <textarea class="j_intro">
+
+                                </textarea>
+                            </div>
+                            <div class="group">
+                                <input type="buttom" class="button j_edituser" value="确定"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: none">
+                        <div class="box">
+                            <div class="group">
+                                <label for="">真实姓名：</label>
+                                <input type="text" class="j_realName"/>
+                            </div>
+                            <div class="group">
+                                <label for="">身份证号：</label>
+                                <input type="text" class="j_idCard"/>
+                            </div>
+                            <div class="group">
+                                <label for="">身份证照片：</label>
+                                <input type="file" class="j_idCardImg" value="" />
+                            </div>
+                            <div class="group">
+                                <input type="buttom" class="button j_editReal" value="确定"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: none">
+                        <div class="box">
+                            <div class="group">
+                                <label for="">开户行：</label>
+                                <input type="text" class="j_bankName"/>
+                            </div>
+                            <div class="group">
+                                <label for="">银行卡号：</label>
+                                <input type="text" class="j_bankNum"/>
+                            </div>
+                            <div class="group">
+                                <label for="">交易密码：</label>
+                                <input type="password" class="j_dealPwd"/>
+                            </div>
+                            <div class="group">
+                                <label for="">再次输入：</label>
+                                <input type="password" class="j_dealPwdSd"/>
+                            </div>
+                            <div class="group">
+                                <input type="buttom" class="button j_editBank" value="确定"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script data-main="javascripts/userinfo.js" src="javascripts/require.js"></script>
+</body>
+</html>

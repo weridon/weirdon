@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>众筹-项目列表</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+<body>
+    <div class="container-fluid scan" >
+        <%- include('cmnheader')%>
+        <div class="content">
+            <!--分类-->
+            <div class="classify-wrapper">
+                <div class="classify-inner">
+                    <ul class="clearfix">
+                        <li class="classify-item-active fl J-all">
+                            <span class="glyphicon glyphicon-tags"></span>
+                            <a class="J-classify-item" data-classify="全部" href="javascript:;">全部</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-phone"></span>
+                            <a class="J-classify-item" data-classify="科技" href="javascript:;">科技</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            <a class="J-classify-item" data-classify="公益" href="javascript:;">公益</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-tree-deciduous"></span>
+                            <a class="J-classify-item" data-classify="农业" href="javascript:;">农业</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-music"></span>
+                            <a class="J-classify-item" data-classify="娱乐" href="javascript:;">娱乐</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-picture"></span>
+                            <a class="J-classify-item" data-classify="艺术" href="javascript:;">艺术</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-book"></span>
+                            <a class="J-classify-item" data-classify="出版" href="javascript:;">出版</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-home"></span>
+                            <a class="J-classify-item" data-classify="房产" href="javascript:;">房产</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-th"></span>
+                            <a class="J-classify-item" data-classify="其它" href="javascript:;">其它</a>
+                        </li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li class="classify-item-active fl J-all">
+                            <span class="glyphicon glyphicon-tags"></span>
+                            <a class="J-pro-status" data-classify="all" href="javascript:;">全部</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <a class="J-pro-status" data-classify="raising" href="javascript:;">进行中</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <a class="J-pro-status" data-classify="finished" href="javascript:;">已结束</a>
+                        </li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li class="classify-item-active fl J-all">
+                            <span class="glyphicon glyphicon-tags"></span>
+                            <a class="J-classify-item" data-classify="全部" href="javascript:;">默认</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                            <a class="J-other-seperate" data-classify="time-down" href="javascript:;">最新上线</a>
+                        </li>
+                        <li class="fl">
+                            <span class="glyphicon glyphicon-usd"></span>
+                            <a class="J-other-seperate" data-classify="money-down" href="javascript:;">目标金额</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--分类结束-->
+            <!--内容-->
+            <div class="scan-pro">
+                <div class="main clearfix">
+                    <% for(var i= 0,len = group.length; i<len; i++) {%>
+                    <div class="J-pro-item fl">
+                        <div class="view view-ninth">
+                            <% if(group[i].img){%>
+                            <img src="./images/<%= JSON.parse(group[i].img)[0] %>">
+                            <% }else{ %>
+                            <img src="./images/noimg.jpg" alt="">
+                            <% } %>
+                            <div class="mask mask-1"></div>
+                            <div class="mask mask-2"></div>
+                            <div class="content">
+                                <h2><%= group[i].proName?group[i].proName:'暂无' %></h2>
+                                <p><%= group[i].proTitle?group[i].proTitle:'暂无' %></p>
+                                <a href="#" class="info">Read More</a>
+                            </div>
+                        </div>
+                        <div class="view-info clearfix">
+                            <div class="fl">
+                                <span class="glyphicon glyphicon-heart"></span>
+                                <span><%= group[i].supportNum?group[i].supportNum:0 %></span>
+                            </div>
+                            <div class="fr">
+                                <span class="glyphicon glyphicon-yen"></span>
+                                <span><%= group[i].goalMoney?group[i].goalMoney:0 %></span>
+                            </div>
+                        </div>
+                        <input class="J-objectid" type="hidden" value="<%= group[i].selfid %>">
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <!--内容结束-->
+        </div>
+    </div>
+    <script src="/javascripts/jquery-2.1.3.js"></script>
+    <script src="/javascripts/scan.js"></script>
+</body>
+</html>

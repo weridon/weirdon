@@ -1,0 +1,38 @@
+@import "_common.scss";
+@import "_header.scss";
+body {
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    line-height: 1.428571429;
+    color: #282828;
+    background-color: #fff;
+}
+header a {
+	color:#000;
+}
+.container.content {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 20px;
+}
+.site-info {
+	h2, .h2 {
+	    font-size: 22px;
+	}
+	h4.nav-title {
+    	margin-top: 30px;
+	    border-left: 3px solid #26becb;
+	    padding-left: 10px;
+	} 
+	.nav-title {
+	    font-size: 16px;
+	    color: #26becb;
+	    line-height: 1;
+	    border-left: 3px solid #26becb;
+	    padding-left: 5px;
+	    margin: 15px;
+	}
+	p {
+	    margin: 0 0 8.5px;
+	}
+}

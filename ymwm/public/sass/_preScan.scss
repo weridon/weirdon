@@ -1,0 +1,158 @@
+a:link,a:hover,a:visited,a:active{
+  text-decoration: none!important;
+}
+.content{
+  position:relative;
+  margin:20px -15px 0;
+  overflow-x: hidden;
+}
+.info-list-wrap{
+  width:45%;
+  margin:0 auto;
+}
+.info-list{
+  padding:0;
+  width:85%;
+  border:1px solid #d9d9d9;
+  @include border-radius(8px);
+  overflow: hidden;
+}
+.info-step{
+  display:inline-block;
+  width:25%;
+  height:50px;
+  line-height: 50px;
+  border-right:1px solid #d9d9d9;
+  text-align: center;
+  font-size:16px;
+  font-weight:bold;
+  background-color: #fff;
+  cursor:pointer;
+  &:nth-child(4){
+    border-right:0;
+  }
+  span{
+    padding:3px;
+    @include border-radius(50%);
+    color:#fff;
+    background-color:#55b5ff;
+  }
+  &:hover{
+    background-color:#f7f8fa;
+  }
+}
+.pre-scan-btn{
+  display:inline-block;
+  width:10%;
+  height:50px;
+  margin-left:20px;
+  line-height: 50px;
+  border:1px solid #d9d9d9;
+  font-size: 16px;
+  font-weight:bold;
+  text-align:center;
+  background-color: #fff;
+  @include border-radius(8px);
+}
+.info-item-active{
+  color:#999;
+  span{
+    color:#fff;
+    background-color: #ddd;
+  }
+}
+.pre-scan{
+  background-color: #f5f6f8;
+  .wrapper{
+    margin-top:40px;
+    background-color: #fff;
+  }
+  .pro-top{
+    padding:30px 0;
+    border-bottom:1px solid #eee;
+    font-size: 12px;
+    color:#999;
+    text-align: center;
+  }
+  .pro-md{
+    padding:20px;
+  }
+  .pro-pre-img{
+    width:60%;
+    img{
+      width:100%;
+    }
+  }
+  .pro-pre-info{
+    width:40%;
+    padding:10px 0 10px 30px;
+  }
+  section{
+    margin-bottom:50px;
+  }
+  .pro-status{
+    margin:20px 0;
+    h3{
+      font-size: 12px;
+      font-weight:bold;
+    }
+    p{
+      font-size:42px;
+      margin-bottom:15px;
+      font-family: 'GothamBold,GothamBold1';
+    }
+  }
+  .rest-and-goal{
+    font-size:12px;
+    color:#999;
+    b{
+      color:#000;
+    }
+  }
+  .btn-support{
+    position:relative;
+    display: inline-block;
+    width:70%;
+    margin:50px auto 30px;
+    background-color: #50abf2;
+    color:#fff;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    @include border-radius(3px);
+    &:active{
+      box-shadow: 5px 5px 5px #2e86cb inset ;
+      @include transform(translateY(2px));
+    }
+  }
+  .info-header{
+    position:relative;
+    height:44px;
+    p{
+      height:22px;
+      border-bottom:3px solid #f1f1f1;
+    }
+    h3{
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      width:250px;
+      margin:0 auto;
+      border:3px solid #f1f1f1;
+      text-align: center;
+      background-color: #fff;
+      line-height: 35px;
+    }
+  }
+  .pro-describe{
+    margin:20px 10px;
+    text-indent:2em;
+    font-size:15px;
+    line-height:20px;
+  }
+  .progress-bar{
+    color:#000;
+  }
+}

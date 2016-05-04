@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+    <title>后台管理系统-项目追踪</title>
+    <link href="/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/management.css">
+</head>
+<body>
+<%- include('cmnMngNav') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 sidebar">
+            <section>
+                <h2>用户</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="management">用户管理</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>项目</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="projectAudit">项目审核</a> <span class="sr-only">(current)</span></li>
+                    <li class="active"><a href="manageProTrend">项目追踪</a> <span class="sr-only">(current)</span></li>
+                </ul>
+            </section>
+            <section>
+                <h2>资金</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="manageMoney">项目资金</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="col-sm-11 col-sm-offset-1 main pro-manage">
+            <h1 class="page-header">项目</h1>
+            <!--charts-->
+            <div class="row placeholders">
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>项目进行状态分布</h4>
+                    <div id="pro-check-data"></div>
+                </div>
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>项目完成状态分布</h4>
+                    <div id="pro-finish-data"></div>
+                </div>
+            </div>
+            <!--data-->
+            <h2 class="sub-header">项目追踪</h2>
+            <div class="search-box">
+                <form class="form-inline">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <label>项目状态</label>
+                    <select class="form-control">
+                        <option value="all">--全部--</option>
+                        <option value="0">进行中</option>
+                        <option value="1">已结束</option>
+                    </select>
+                    <input id="select-state-btn" class="btn btn-primary btn-sm" type="button" value="查询">
+                </form>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>项目标题</th>
+                            <th>项目图片</th>
+                            <th>截止日期</th>
+                            <th>众筹金额</th>
+                            <th>已筹金额</th>
+                            <th>支持人数</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="J-pro-info">
+                        <% for(var i= 0,len=group.length;i<len;i++){ %>
+                        <tr>
+                            <td class="protitle"><%= group[i].proName||'暂无' %><input type="hidden" value="<%= group[i].selfid %>">
+                            </td>
+                            <td>
+                                <% if(group[i].img){%>
+                                <img src="./images/<%= JSON.parse(group[i].img)[0] %>">
+                                <% }else{ %>
+                                <img src="./images/noimg.jpg" alt="">
+                                <% } %>
+                            </td>
+                            <% var finish = new Date(group[i].finishTime),year=finish.getFullYear(),month=finish.getMonth()+1,day=finish.getDate();%>
+                            <td><%= year+'-'+month+'-'+day %></td>
+                            <td><%= group[i].goalMoney %></td>
+                            <td><%= group[i].currentMoney %></td>
+                            <td><%= group[i].supportNum||0 %></td>
+                            <% if(group[i].currentMoney >= group[i].goalMoney || group[i].finishTime < new Date()){ %>
+                            <td class="check-pass"><span class="glyphicon glyphicon-ok"></span>已结束</td>
+                            <% }else{%>
+                            <td class="waiting-check"><span class="glyphicon glyphicon-heart-empty"></span>进行中</td>
+                            <% } %>
+                            <td><a class="btn btn-sm btn-info J-find-trend">查看动态</a></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jq-dialog">
+    <div class="jq-dialog-inner">
+        <div class="jq-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="jq-dialog-con">
+            <p>是否通过该项目审核</p>
+        </div>
+        <div class="jq-btn-group">
+            <a class="jq-sure-btn" href="javascript:;">通过</a>
+            <a class="jq-cancel-btn" href="javascript:;">不通过</a>
+        </div>
+    </div>
+</div>
+<div class="sec-dialog">
+    <div class="sec-dialog-inner">
+        <div class="sec-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="sec-dialog-con">
+            <p>确定删除该项目吗？删除后信息不可恢复</p>
+        </div>
+        <div class="sec-btn-group">
+            <a class="sec-sure-btn" href="javascript:;">确定</a>
+            <a class="sec-cancel-btn" href="javascript:;">取消</a>
+        </div>
+    </div>
+</div>
+<div class="trend-mask">
+    <div class="trend-inner">
+        <div class="no-trend">
+            <p>暂无项目动态</p>
+        </div>
+        <ul class="trend-list">
+            <li class="trend-item">
+                <p class="trend-time">2015-09-09</p>
+                <span class="glyphicon glyphicon-volume-up news"></span>
+                <p class="trend-con">哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+            </li>
+            <li class="trend-item">
+                <p class="trend-time">2015-09-09</p>
+                <span class="glyphicon glyphicon-volume-up news"></span>
+                <p class="trend-con">哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+            </li>
+            <li class="trend-item">
+                <p class="trend-time">2015-09-09</p>
+                <span class="glyphicon glyphicon-volume-up news"></span>
+                <p class="trend-con">哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+            </li>
+            <li>
+                <div class="last-no-line"></div>
+            </li>
+        </ul>
+        <div class="text-center">
+            <button type="button" id="close-trend-btn" class="btn btn-info btn-close">关闭</button>
+        </div>
+    </div>
+</div>
+<script data-main="javascripts/manageProTrend.js" src="javascripts/require.js"></script>
+</body>
+</html>

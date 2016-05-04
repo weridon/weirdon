@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scaleble=no">
+    <title>密码修改</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/account.css">
+</head>
+<body>
+<div class="wrap clearfix">
+    <!--头部导航栏-->
+    <%- include('cmnheader')%>
+    <div class="content">
+        <div class="inner">
+            <%- include('cmnsection')%>
+            <div class="innerCon">
+                <ul class="tabNav">
+                    <li class="cur">修改密码</li>
+                </ul>
+                <div class="tabCon">
+                    <div>
+                        <div class="box">
+                            <div class="group">
+                                <label for="">原始密码：</label>
+                                <input type="text" class="j_oldPwd"/>
+                            </div>
+                            <div class="group">
+                                <label for="">新密码：</label>
+                                <input type="text" class="j_newPwd"/>
+                            </div>
+                            <div class="group">
+                                <label for="">确认密码：</label>
+                                <input type="text" class="j_newPwdScd"/>
+                            </div>
+                            <div class="group">
+                                <input type="buttom" class="button j_sendPwd" value="确定"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script data-main="javascripts/editPwd.js" src="javascripts/require.js"></script>
+</body>
+</html>

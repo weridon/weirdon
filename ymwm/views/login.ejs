@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>会员登录-以梦为马</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link type="text/css" href="/stylesheets/login.css" rel="stylesheet">
+    <script type="text/javascript" src="/javascripts/login.js"></script>
+</head>
+<body class="chl-reg" ><!-- onload="autoStart()" -->
+    <header class="navbar navbar-static-top" role="banner">
+       <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand center-block" href="index">
+                    <img class="center-block" src="/images/brand-rl.png" alt="Brand v1">
+                </a>
+            </div>
+        </div>
+    </header>
+    <!--content-->
+        <div class="login-container-body">
+            <div class="container">
+                <div class="bg-title">
+                    <img src="/images/1111.png" alt="login bg title">
+                </div>
+                <div class="panel panel-simple login-panel">
+                    <div class="panel-body">
+                        <header>
+                            <h1>会员登录</h1>
+                        </header>
+                        <form class="simple_form login-form center-block form-pretty">
+                            <div class="error-notification simple-hide" id="J_NickX1433840767962">
+                                <img src="/images/icon-warning-sm-6c11ac00ff8d96adac13ca51744ef24b.png" alt="Icon warning sm">
+                                <span class="message">账号或密码错误，请重新输入</span>
+                            </div>
+                            <div class="form-controls">
+                                <div class="form-group pretty-group">
+                                    <label class="string control-labe" for="TPL_username_1">账号:</label>
+                                    <div class="input-wrapper">
+                                        <input class="string form-control" id="TPL_username_1" placeholder="用户名" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group pretty-group">
+                                    <label class="password control-label" for="J_StandardPwd"> 密码:
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <input class="password form-control" placeholder="密码" type="password" id="J_StandardPwd">
+                                    </div>
+                                </div>
+                                <div class="clearfix misc-controls">
+                                    <div class="pull-left">
+                                        <div class="checkbox">
+                                            <label>
+                                                <div class="checkbox-wrapper-pertty">
+                                                    <input checked="checked" id="agreeCheck" type="checkbox">
+                                                    <div class="selected-icon"></div>
+                                                </div>自动登录
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right forgot-password">
+                                        <a class="link-primary forgot-password-link" href="/passwords/new">忘记密码？</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <input type="button" name="commit" value="登 录" class="btn btn-primary btn-block btn-lg" id="J_SubmitStatic">
+                            </div>
+                        </form>
+                        <div class="signup">
+                            <a href="register">还没有账号，30秒完成注册</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--content end-->
+
+<script type="text/javascript" src="javascripts\jquery-2.1.3.js"></script>
+<script type="text/javascript">
+    $("#J_SubmitStatic").click(function(){
+        var username = $("#TPL_username_1").val();
+        var password = $("#J_StandardPwd").val();
+        $.ajax({
+            type: "post",
+            url: "/mylogin",
+            data:{username: username, password: password},
+            success: function(data) {
+                if(!data.isChecked){
+                    $('.error-notification').show();
+                }else{
+                    window.localStorage.setItem("name",username);
+                    document.cookie = "name="+username+";expires="+new Date('2016-08-01').toGMTString();
+                    if(username != 'admin'){
+                        window.location.href='index';
+                    }else{
+                        window.location.href = 'management';
+                    }
+                }
+            },
+            error: function(data) {
+                alert("失败");
+            }
+        });
+    })
+</script>
+</body>
+</html>

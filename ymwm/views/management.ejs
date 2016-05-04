@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../../favicon.ico">
+    <title>后台管理系统-首页</title>
+    <link href="/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.5/css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/management.css">
+</head>
+<body>
+<%- include('cmnMngNav') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 sidebar">
+            <section>
+                <h2>用户</h2>
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="management">用户管理 <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>项目</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="projectAudit">项目审核</a> <span class="sr-only">(current)</span></li>
+                    <li><a href="manageProTrend">项目追踪</a> <span class="sr-only">(current)</span></li>
+                </ul>
+            </section>
+            <section>
+                <h2>资金</h2>
+                <ul class="nav nav-sidebar">
+                    <li><a href="manageMoney">项目资金</a></li>
+                </ul>
+            </section>
+        </div>
+        <div class="col-sm-11 col-sm-offset-1 main">
+            <h1 class="page-header">用户</h1>
+            <!--charts-->
+            <div class="row placeholders">
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>用户审核状态分布</h4>
+                    <div id="user-check-data"></div>
+                </div>
+                <div class="col-xs-12 col-sm-5 placeholder">
+                    <h4>用户注册数</h4>
+                    <div id="user-regist-data"></div>
+                </div>
+            </div>
+            <!--data-->
+            <h2 class="sub-header">用户管理</h2>
+            <div class="search-box">
+                <form class="form-inline">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <label>状态</label>
+                    <select class="form-control">
+                        <option value="all">--全部--</option>
+                        <option value="0">待审核</option>
+                        <option value="1">已通过</option>
+                        <option value="2">未通过</option>
+                    </select>
+                    <input id="find-user-btn" class="btn btn-primary btn-sm" type="button" value="查询">
+                </form>
+            </div>
+            <div class="table-responsive">
+                <% if(group){ %>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>手机号</th>
+                            <th>身份证号</th>
+                            <th>邮箱</th>
+                            <th>真实姓名</th>
+                            <th>性别</th>
+                            <th>开户行</th>
+                            <th>银行卡号</th>
+                            <th>操作</th>
+                            <th>审核状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="J-user-info">
+                        <% for(var i= 0,len=group.length;i<len;i++){ %>
+                        <tr>
+                            <td><%= group[i].username %></td>
+                            <td><%= group[i].tele %></td>
+                            <td><%= group[i].idCard %></td>
+                            <td><%= group[i].email %></td>
+                            <td><%= group[i].realName %></td>
+                            <% if(group[i].sex==1){ %>
+                            <td>女</td>
+                            <% }else if(group[i].sex==2){ %>
+                            <td>男</td>
+                            <% }else{ %>
+                            <td>保密</td>
+                            <% } %>
+                            <td><%= group[i].bankName %></td>
+                            <td><%= group[i].bankNum %></td>
+                            <td>
+                                <a class="btn btn-info btn-sm J-check" href="javascript:;">审核</a>
+                                <a class="btn btn-warning btn-sm J-delete" href="javascript:;">删除</a>
+                            </td>
+                            <% if(group[i].isUsed == 0){ %>
+                            <td class="waiting-check"><span class="glyphicon glyphicon-question-sign"></span>待审核</td>
+                            <% }else if(group[i].isUsed == 1){ %>
+                            <td class="check-pass"><span class="glyphicon glyphicon-ok"></span>已通过</td>
+                            <% }else{%>
+                            <td class="check-unpass"><span class="glyphicon glyphicon-remove"></span>未通过</td>
+                            <% } %>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+                <% }else{ %>
+                <div class="no-user-info">
+                    <p>暂时没有注册用户</p>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jq-dialog">
+    <div class="jq-dialog-inner">
+        <div class="jq-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="jq-dialog-con">
+            <p>请确保该用户已实名，已绑定银行卡号</p>
+        </div>
+        <div class="jq-btn-group">
+            <a class="jq-sure-btn" href="javascript:;">通过</a>
+            <a class="jq-cancel-btn" href="javascript:;">不通过</a>
+        </div>
+    </div>
+</div>
+<div class="sec-dialog">
+    <div class="sec-dialog-inner">
+        <div class="sec-close-tag fr">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+        <div class="sec-dialog-con">
+            <p>确定删除该用户吗？删除后信息不可恢复</p>
+        </div>
+        <div class="sec-btn-group">
+            <a class="sec-sure-btn" href="javascript:;">确定</a>
+            <a class="sec-cancel-btn" href="javascript:;">取消</a>
+        </div>
+    </div>
+</div>
+<script data-main="javascripts/management.js" src="javascripts/require.js"></script>
+</body>
+</html>

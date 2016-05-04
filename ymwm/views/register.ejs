@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="./bootstrap-3.3.5/css/bootstrap.min.css">
+    <link type="text/css" href="/stylesheets/register.css" rel="stylesheet">
+</head>
+<body class="chl-reg">
+
+    <header class="navbar navbar-static-top" role="banner">
+       <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand center-block" href="/">
+                    <img class="center-block" src="/images/brand-rl.png" alt="Brand v1">
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="panel panel-simple">
+            <div class="panel-heading">
+                <span class="panel-title">注册账号</span>
+            </div>
+            <div class="panel-body">
+                <form class="simple_form form-horizontal signup-form center-block form-pretty" action="/email_signup" accept-charset="UTF-8" data-remote="true" method="post" onsubmit="return usinformCheck()">
+                    <div class="form-controls">
+                        <div class="form-group pretty-group email user_email">
+                            <label class="email control-label control-label" for="user_email">
+                             邮箱:</label>
+                            <div class="input-wrapper">
+                                <input autocomplete="off" class="string email form-control form-control" type="email" id="J_email">
+                            </div>
+                            <div class="error-block">请输入邮箱</div>
+                        </div>
+                        <div class="form-group pretty-group">
+                            <label class="string control-label control-label" for="J_vipname">
+                                用户名:
+                            </label>
+                            <div class="input-wrapper">
+                                <input autocomplete="off" class="string form-control" type="text" id="J_vipname">
+                            </div>
+                            <div class="error-block">请输入昵称</div>
+                        </div>
+                        <div class="form-group pretty-group">
+                            <label class="control-label control-label" for="J_password">
+                                密码:
+                            </label>
+                            <div class="input-wrapper">
+                                <input autocomplete="off" class="form-control" type="password" id="J_password">
+                            </div>
+                            <div class="error-block">密码最短为8位</div>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <div class="checkbox-wrapper-pertty">
+                                    <input checked="checked" id="agreeCheck" type="checkbox">
+                                    <div class="selected-icon">
+                                        
+                                    </div>
+                                </div>已阅读并同意<a target="_blank" class="link-primary" href="term">《以梦为马众筹用户注册协议》</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <input type="button" name="commit" value="保存" class="btn btn-primary btn-block btn-lg" id="J_BtnInfoForm">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="/javascripts/register.js"></script>
+
+    <script src="./javascripts/jquery-2.2.1.min.js"></script>
+<script>
+    var email,username,password;
+
+    //点击确定 发送请求
+    $("#J_BtnInfoForm").click(function(){
+        email = $("#J_email").val();
+        password =  $("#J_password").val(); //取密码
+        username =  $("#J_vipname").val();  //取会员名
+        //验证用户名是否存在
+        $.ajax({
+            type: "post",
+            url: "/userIdentify",
+            data:{
+                username:username
+            },
+            success: function(data) {
+                if(data=='success'){
+                    usersave(email,username,password);
+                }else{
+                    alert(data);
+                }
+            },
+            error: function(data) {
+                alert("失败");
+            }
+        })
+    });
+    function usersave(email,username,pwd){
+        $.ajax({
+            type:'post',
+            url:'/userSave',
+            data:{
+                email:email,
+                username:username,
+                password:pwd
+            },
+            success:function(data){
+                if(data == 'success'){
+                    window.location.href = 'login';
+                }else{
+                    alert('请稍后再试~');
+                }
+            },
+            error:function(){
+                alert('ajax error!')
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

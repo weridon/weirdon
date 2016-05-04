@@ -1,0 +1,220 @@
+.scan{
+  .main{
+     position:relative;
+   }
+  .view {
+    width: 300px;
+    height: 200px;
+    margin: 10px;
+    border: 10px solid #fff;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    -webkit-box-shadow: 1px 1px 2px #e6e6e6;
+    -moz-box-shadow: 1px 1px 2px #e6e6e6;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: pointer;
+    background: #fff url(../images/hover_bg.jpg) no-repeat center center;
+  }
+  .view .mask,.view .content {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+  }
+  .view img {
+    display: block;
+    position: relative;
+    width:100%;
+    height:100%;
+  }
+  .view h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 16px;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0;
+  }
+  .view p {
+    position: relative;
+    padding: 10px 20px 20px;
+    font-size: 12px;
+    line-height:15px;
+    color: #fff;
+    text-align: center;
+  }
+  .view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0 0 1px #000;
+    -moz-box-shadow: 0 0 1px #000;
+    box-shadow: 0 0 1px #000;
+  }
+  .view a.info:hover {
+    -webkit-box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+  }
+  .view-ninth .mask-1, .view-ninth .mask-2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 361px;
+    width: 361px;
+    background: rgba(64, 153, 222, 0.5);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out 0.6s;
+    -moz-transition: all 0.3s ease-in-out 0.6s;
+    -o-transition: all 0.3s ease-in-out 0.6s;
+    transition: all 0.3s ease-in-out 0.6s;
+  }
+  .view-ninth .mask-1 {
+    left: auto;
+    right: 0;
+    -webkit-transform: rotate(56.5deg) translateX(-180px);
+    -moz-transform: rotate(56.5deg) translateX(-180px);
+    -o-transform: rotate(56.5deg) translateX(-180px);
+    -ms-transform: rotate(56.5deg) translateX(-180px);
+    transform: rotate(56.5deg) translateX(-180px);
+    -webkit-transform-origin: 100% 0%;
+    -moz-transform-origin: 100% 0%;
+    -o-transform-origin: 100% 0%;
+    -ms-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+  .view-ninth .mask-2 {
+    top: auto;
+    bottom: 0;
+    -webkit-transform: rotate(56.5deg) translateX(180px);
+    -moz-transform: rotate(56.5deg) translateX(180px);
+    -o-transform: rotate(56.5deg) translateX(180px);
+    -ms-transform: rotate(56.5deg) translateX(180px);
+    transform: rotate(56.5deg) translateX(180px);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+  }
+  .view-ninth .content {
+    background: rgba(0, 0, 0, 0.9);
+    height: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    width: 361px;
+    overflow: hidden;
+    -webkit-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -moz-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -o-transform: rotate(-33.5deg) translate(-112px, 166px);
+    -ms-transform: rotate(-33.5deg) translate(-112px, 166px);
+    transform: rotate(-33.5deg) translate(-112px, 166px);
+    -webkit-transform-origin: 0% 100%;
+    -moz-transform-origin: 0% 100%;
+    -o-transform-origin: 0% 100%;
+    -ms-transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
+    -webkit-transition: all 0.4s ease-in-out 0.3s;
+    -moz-transition: all 0.4s ease-in-out 0.3s;
+    -o-transition: all 0.4s ease-in-out 0.3s;
+    transition: all 0.4s ease-in-out 0.3s;
+  }
+  .view-ninth h2 {
+    background: transparent;
+    margin-top: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .view-ninth a.info {
+    display: none;
+  }
+  .view-ninth:hover .content {
+    height: 120px;
+    width: 300px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+    opacity: 0.9;
+    top: 40px;
+    -webkit-transform: rotate(0deg) translate(0, -10px);
+    -moz-transform: rotate(0deg) translate(0, -10px);
+    -o-transform: rotate(0deg) translate(0, -10px);
+    -ms-transform: rotate(0deg) translate(0, -10px);
+    transform: rotate(0deg) translate(0, -10px);
+  }
+  .view-ninth:hover .mask-1, .view-ninth:hover .mask-2 {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+  }
+  .view-ninth:hover .mask-1 {
+    -webkit-transform: rotate(56.5deg) translateX(-1px);
+    -moz-transform: rotate(56.5deg) translateX(-1px);
+    -o-transform: rotate(56.5deg) translateX(-1px);
+    -ms-transform: rotate(56.5deg) translateX(-1px);
+    transform: rotate(56.5deg) translateX(-1px);
+  }
+  .view-ninth:hover .mask-2 {
+    -webkit-transform: rotate(56.5deg) translateX(1px);
+    -moz-transform: rotate(56.5deg) translateX(1px);
+    -o-transform: rotate(56.5deg) translateX(1px);
+    -ms-transform: rotate(56.5deg) translateX(1px);
+    transform: rotate(56.5deg) translateX(1px);
+  }
+  .content{
+    margin:0 -15px;
+    a,a:link,a:hover,a:visited,a:active{
+      color:inherit;
+    }
+  }
+  .view-info{
+    width:60%;
+    margin:0 auto;
+    color:#50abf2;
+    div{
+      margin:10px;
+    }
+  }
+  .classify-wrapper{
+    padding:20px 0;
+    background-color: #f6f7f8;
+  }
+  .classify-inner{
+    max-width:970px;
+    margin:0 auto;
+    ul{
+      margin:5px 0;
+    }
+    li{
+      padding:10px 15px;
+      margin:5px 10px;
+      @include border-radius(30px);
+      border:1px solid #dcdcdc;
+      color:#50abf2;
+      font-size:13px;
+      &:hover{
+        background-color:#50abf2;
+        color:#fff;
+        a{
+          color:#fff;
+        }
+      }
+    }
+  }
+  li.classify-item-active{
+    background-color:#50abf2;
+    color:#fff;
+  }
+  .scan-pro{
+    width:970px;
+    margin:20px auto;
+  }
+}
